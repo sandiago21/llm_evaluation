@@ -1,0 +1,302 @@
+query,expected_answer
+What is a hedge?,"An investment or contract intended to reduce the risk of adverse price movements in another asset. Common hedging instruments include futures, options, and currency forwards."
+What does 'underwriting' mean in insurance?,"The process by which an insurer evaluates the risk of insuring an applicant, decides whether to offer coverage, and at what price and terms."
+What is 7 factorial (7!)?,5040
+Can my insurer cancel my policy after a claim?,"Mid-term cancellation is usually limited to specific reasons (fraud, non-payment, material misrepresentation). At renewal, the insurer may decline to renew based on claims history, subject to local regulation."
+What is EBITDA?,"Earnings Before Interest, Taxes, Depreciation, and Amortization. A proxy for operating cash flow used to compare profitability across companies with different capital structures."
+What is the sum of angles in a triangle?,180 degrees
+How do you serialize a Python dict to a JSON string?,import json\njson.dumps(my_dict)  # add ensure_ascii=False for non-ASCII; indent=2 for pretty-printing
+What is 'loss adjustment expense' (LAE)?,"Costs the insurer incurs to investigate, defend, and settle claims—e.g., adjuster fees, legal expenses—separate from the indemnity paid on the claim itself."
+Write a Python dict comprehension that maps each word in a list to its length.,{w: len(w) for w in words}
+What is beta in finance?,A measure of a stock's volatility relative to the market. Beta = 1 means it moves with the market; >1 more volatile; <1 less; negative betas move opposite the market on average.
+Write a Python context manager that times the code inside it.,from contextlib import contextmanager\nimport time\n\n@contextmanager\ndef timer(label='block'):\n    t0 = time.perf_counter()\n    yield\n    print(f'{label}: {time.perf_counter() - t0:.4f}s')
+What is a 'release' in claim settlement?,"A document the claimant signs agreeing to accept the settlement amount in full satisfaction of the claim, releasing the insurer (and often the responsible party) from further liability for the loss."
+What is market capitalization?,"The total market value of a company's outstanding shares: share price multiplied by number of shares outstanding. Used to size companies as small-, mid-, or large-cap."
+What is 'loss of use' coverage?,"Reimburses additional living expenses (e.g., hotel, restaurants) if your home becomes uninhabitable due to a covered loss—up to a defined limit and time period."
+What is a 'depreciation holdback'?,"Under replacement-cost coverage, the insurer first pays ACV (actual cash value); the depreciation portion is paid only after the insured completes the repair or replacement and submits proof."
+What is the smallest unit of life?,The cell.
+Write a SQL query to count the number of customers per country in a `customers` table.,"SELECT country, COUNT(*) AS customer_count\nFROM customers\nGROUP BY country\nORDER BY customer_count DESC;"
+What is 'pet insurance'?,"A policy reimbursing veterinary costs for accidents, illnesses, and—depending on plan—routine care, after a deductible and subject to limits and exclusions."
+What language has the most native speakers?,Mandarin Chinese has the most native speakers worldwide.
+"Compute the monthly payment on a $200,000 mortgage at a 5% annual rate over 30 years.","About $1,073.64 per month. Using M = P*r/(1-(1+r)^-n) with P=200000, r=0.05/12, n=360."
+What is a list comprehension and when should you use one?,A concise expression for building a list from an iterable: `[expr for x in iterable if cond]`. Use it for simple transformations and filters; for complex logic prefer a regular for-loop for readability.
+What is the slope of the line y = 3x + 2?,3
+How do you reverse a string in Python in one line?,Use slicing: s[::-1]
+What is the capital of Canada?,Ottawa.
+What is a balance sheet?,"A financial statement showing a company's assets, liabilities, and shareholders' equity at a single point in time. Assets always equal liabilities plus equity."
+What is the difference between a stack and a queue?,"A stack is LIFO (last-in, first-out): push/pop at the same end. A queue is FIFO (first-in, first-out): enqueue at the back, dequeue at the front."
+What is a mutual fund?,An investment vehicle that pools money from many investors to buy a diversified portfolio managed by a professional. Investors hold shares of the fund and trade at end-of-day NAV.
+What is the difference between a Roth IRA and a traditional IRA?,"Traditional IRA: contributions may be tax-deductible, withdrawals in retirement are taxed. Roth IRA: contributions are after-tax, qualified withdrawals are tax-free. Income limits and rules differ."
+What is the capital of France?,Paris
+What is a credit score?,"A numeric rating (commonly 300-850 in the U.S.) summarizing a person's creditworthiness based on payment history, credit utilization, length of history, mix, and new credit."
+How do catastrophe (CAT) claims differ from regular ones?,"CAT claims involve large-scale events (hurricanes, earthquakes, wildfires) generating many simultaneous claims. Insurers deploy CAT teams, may apply special CAT deductibles, and adjusting timelines often stretch."
+What is the largest ocean on Earth?,The Pacific Ocean.
+Who wrote Romeo and Juliet?,William Shakespeare
+What is the largest desert in the world?,"Antarctica is the largest desert by area, classified as a polar desert. Among hot deserts, the Sahara is the largest."
+What is the formula for the volume of a sphere?,V = (4/3)πr³
+What is the chemical symbol for gold?,Au
+What is REST?,"Representational State Transfer: an architectural style for networked APIs using stateless HTTP methods (GET, POST, PUT, PATCH, DELETE) on resources identified by URLs, typically returning JSON."
+What is a Python generator?,"A function that uses `yield` to produce values lazily, one at a time. It maintains its state between calls and is memory-efficient for large or infinite sequences."
+What is leverage in finance?,Using borrowed capital to increase potential return on investment. Leverage amplifies both gains and losses and increases risk if the underlying investment underperforms.
+What is 'lapse' of an insurance policy?,"Termination of the policy because the insured failed to pay the premium by the end of the grace period. Coverage ceases until the policy is reinstated, if allowed."
+What is the unit of electrical resistance?,The ohm (Ω).
+What is an IRA?,Individual Retirement Account: a U.S. tax-advantaged personal retirement account. Traditional IRAs offer tax-deferred growth; Roth IRAs offer tax-free growth on after-tax contributions.
+What is 'umbrella insurance'?,"A policy providing extra liability coverage above the limits of underlying policies (auto, home), and sometimes covering claims excluded by them, such as libel or slander."
+What is a SQL injection and how do you prevent it?,"An attack where untrusted input is concatenated into SQL, letting attackers run arbitrary queries. Prevent it by using parameterized queries or prepared statements, never string concatenation, and by applying least-privilege database accounts."
+What is the difference between a first-party and a third-party claim?,A first-party claim is filed by the policyholder against their own insurer for their own loss. A third-party claim is filed by someone else against the policyholder's liability insurance for damage the policyholder caused.
+What does NATO stand for?,North Atlantic Treaty Organization.
+What if two insurance policies cover the same loss?,"The policies' 'other insurance' clauses determine the order of payment—primary, excess, or pro rata. Insurers coordinate so the insured isn't paid twice for the same loss (per the indemnity principle)."
+Should I get my own repair estimate after an auto claim?,"Yes—an independent estimate from a trusted repair shop helps verify the insurer's appraisal, supports negotiations if the offer seems low, and gives a clearer view of repair quality and timelines."
+What is the largest organ in the human body?,The skin.
+Write a Python function that returns the GCD of two integers.,"from math import gcd\n# Or implement it:\n# def gcd(a, b):\n#     while b:\n#         a, b = b, a % b\n#     return abs(a)"
+What is the difference between gross and net income?,"Gross income is total revenue minus the direct cost of producing goods/services (COGS). Net income subtracts all remaining expenses—operating costs, interest, taxes—giving the bottom-line profit."
+"What is the mean of 4, 8, 15, 16, 23, 42?",Mean = (4+8+15+16+23+42)/6 = 108/6 = 18.
+What is 'disability insurance'?,Coverage that replaces a portion of the insured's income if they become unable to work due to illness or injury. Short-term and long-term variants exist.
+Who wrote 'The Origin of Species'?,"Charles Darwin, published in 1859."
+What is a 'binder' in insurance?,A temporary written agreement issued by the insurer or agent that provides immediate coverage while the formal policy is being prepared. Usually valid for a short period.
+What does 'totaled' mean in auto insurance?,"A vehicle is declared a total loss when the cost of repair exceeds a percentage of its actual cash value (often 70-80%, varying by jurisdiction and insurer). The insurer pays the ACV minus deductible and takes the salvage."
+Solve for x: 2x + 3 = 11.,"x = 4. Subtract 3 from both sides to get 2x = 8, then divide by 2."
+How do you remove duplicates from a Python list while preserving order?,"Use a dict: list(dict.fromkeys(my_list)). Since Python 3.7, dict preserves insertion order, so this is concise and order-preserving."
+What is the powerhouse of the cell?,The mitochondrion (often called the 'powerhouse of the cell' because it produces most of the cell's ATP).
+What is the difference between INNER JOIN and LEFT JOIN in SQL?,INNER JOIN returns only rows where the join condition matches in both tables. LEFT JOIN returns all rows from the left table and matching rows from the right table; non-matching right rows yield NULLs.
+What is diversification?,"Spreading investments across assets, sectors, and regions so that idiosyncratic risks partially offset, reducing overall portfolio volatility without proportionally lowering expected return."
+What is a 'waiting period' in insurance?,"A defined time after policy issuance during which certain claims are not payable. Common in disability, dental, and some health policies."
+What is the square root of 144?,12
+What is 'health insurance' in one sentence?,"A contract under which an insurer pays some or all of the policyholder's medical expenses in exchange for a premium, subject to deductibles, copays, coinsurance, and exclusions."
+What is the smallest country in the world?,Vatican City.
+What is an 'occurrence' policy?,"A liability policy that covers incidents that occur during the policy period, even if the claim is filed years later, as long as the loss happened while the policy was in force."
+How many planets are in our solar system?,"Eight, since Pluto was reclassified as a dwarf planet in 2006."
+What does 'IBNR' stand for in insurance?,Incurred But Not Reported. The estimated reserve for losses that have already occurred but have not yet been reported to the insurer. A core actuarial reserving concept.
+What is net present value (NPV)?,The sum of discounted cash flows of an investment minus its initial cost. A positive NPV at the chosen discount rate means the investment is expected to add value.
+Write a JavaScript function that returns the unique values of an array.,const unique = arr => [...new Set(arr)];
+What does the SQL keyword UNION do?,"It combines the result sets of two queries with the same column shape, removing duplicates. Use UNION ALL to keep duplicates and run faster."
+What is 'flood insurance' typically excluded from?,"Standard homeowners policies, which usually exclude flood damage. Coverage is purchased separately, often through national flood programs."
+Write a Python snippet that opens a CSV file and prints each row.,"import csv\nwith open('data.csv', newline='', encoding='utf-8') as f:\n    for row in csv.reader(f):\n        print(row)"
+What is a 'proof of loss'?,"A formal sworn statement from the insured detailing the loss—date, cause, items damaged, and amount claimed—submitted to support a claim. Most policies require it within a defined timeframe."
+What is an 'exclusion' in an insurance policy?,"A specific condition, peril, or situation that the policy does not cover. Exclusions are listed in the policy and are enforceable when a claim falls within them."
+What is Newton's second law of motion?,Force equals mass times acceleration: F = m * a.
+Write a JavaScript function that debounces another function with a given delay in ms.,"function debounce(fn, delay) {\n  let t;\n  return (...args) => {\n    clearTimeout(t);\n    t = setTimeout(() => fn(...args), delay);\n  };\n}"
+Write a Python list comprehension that returns the squares of even numbers from 0 to 20.,[x*x for x in range(21) if x % 2 == 0]
+What is a credit spread?,The difference in yield between a corporate (or other risky) bond and a comparable-maturity government benchmark. It reflects compensation for default risk.
+What is correlation in finance?,A statistic between -1 and 1 measuring how two assets' returns move together. Combining low- or negatively-correlated assets reduces portfolio volatility.
+What is the tallest mountain in the world?,"Mount Everest, with a summit at about 8,849 meters above sea level."
+What is 'mitigation of damages' duty?,"The insured's duty to take reasonable steps to limit further damage after a loss—e.g., tarping a roof after a storm. Failure to mitigate can reduce or void the claim."
+Explain photosynthesis in one sentence.,"Photosynthesis is the process by which plants, algae, and some bacteria convert sunlight, water, and carbon dioxide into glucose and oxygen."
+What is a structured settlement?,A negotiated arrangement where claim proceeds are paid as a stream of periodic payments (often via an annuity) instead of a lump sum. Common in large bodily-injury settlements.
+How do I dispute the value placed on my totaled car?,"Get independent appraisals, comparable listings of similar vehicles for sale in your area, and submit them to the insurer. Many policies offer an appraisal clause to invoke a third-party umpire if disagreement persists."
+What is an annuity?,"A financial product paying a stream of cash flows over time. Common in retirement, where an insurer pays the holder periodic income in exchange for a lump sum or premiums."
+What is depreciation?,"An accounting method that allocates the cost of a tangible asset over its useful life, reflecting wear, tear, and obsolescence on the income statement."
+Can filing a claim raise my premium?,"Often yes, especially for at-fault auto accidents or multiple property claims in a short period. Insurers price based on risk, and claim history is a strong signal. No-fault and informational-only claims may have less or no impact."
+What does `async/await` do in JavaScript?,"`async` marks a function as returning a Promise. `await` pauses execution inside an async function until a Promise settles, letting you write asynchronous code in a synchronous-looking style."
+What is the difference between a virus and a bacterium?,"Bacteria are single-celled living organisms that can reproduce on their own. Viruses are much smaller, are not considered fully alive, and require a host cell's machinery to replicate."
+What is the most abundant gas in Earth's atmosphere?,Nitrogen (about 78% by volume).
+Write a Python snippet that times a function call.,import time\nt0 = time.perf_counter()\nresult = my_func()\nelapsed = time.perf_counter() - t0
+What is a stop-loss order?,"An order to automatically sell a security when its price reaches a specified level, limiting downside losses. Becomes a market order once triggered."
+In which year did the French Revolution begin?,1789
+What is a dividend?,"A distribution of part of a company's earnings to shareholders, usually paid in cash or additional shares. Dividend frequency and amount are decided by the board."
+What is 'subrogation'?,"The insurer's right, after paying a claim, to step into the insured's shoes and pursue any third party responsible for the loss to recover what it paid."
+Write a Python snippet to read environment variables.,"import os\nvalue = os.environ.get('MY_VAR', 'default-value')"
+What does RAM stand for?,Random Access Memory.
+What is 'moral hazard'?,The risk that insurance changes the insured's behavior—being less careful—because the financial consequence of a loss is shifted to the insurer.
+What is 12% of 250?,30 (since 0.12 * 250 = 30).
+What is a 'beneficiary' in life insurance?,The person or entity designated to receive the death benefit when the insured dies. There can be primary and contingent beneficiaries.
+What is the role of an insurance broker?,"An independent intermediary representing the buyer. Brokers analyze client needs, compare offers from multiple insurers, place the policy, and assist with claims, in exchange for a commission or fee."
+What is 'utmost good faith' (uberrimae fidei)?,"The duty of both parties to an insurance contract to disclose all material facts honestly. Breach—e.g., misrepresentation—can void the policy."
+What is a stock split?,"A corporate action that increases the number of shares outstanding while proportionally reducing share price, leaving market cap and shareholder ownership percentage unchanged."
+What is 'subrogation' in claim handling?,"After paying a claim, the insurer's right to pursue recovery from a responsible third party (and their insurer) to recoup the amount paid to the insured."
+What is log base 10 of 1000?,3
+What is the difference between term life and whole life insurance?,"Term life provides a death benefit for a fixed period (e.g., 20 years) with no cash value and lower premiums. Whole life covers the insured's entire life, accumulates cash value, and has higher premiums."
+What does 'first notice of loss' (FNOL) mean?,"The initial report a policyholder files with the insurer to declare a loss and start the claim process. It triggers reserving, claim assignment, and investigation."
+How do you check if a key exists in a Python dict?,Use `key in my_dict`. Avoid `my_dict.has_key()` (removed in Python 3).
+What is the time complexity of binary search?,"O(log n) for a sorted array, since each step halves the search space."
+What is the difference between SQL WHERE and ON clauses in a JOIN?,"ON specifies the join condition between tables and runs during the join, before WHERE. WHERE filters the result of the join. With LEFT/RIGHT JOIN, putting a filter in WHERE can effectively turn the join into an INNER JOIN."
+Write a Python snippet that creates a Pandas DataFrame from a dict.,"import pandas as pd\ndf = pd.DataFrame({'name': ['A', 'B'], 'value': [1, 2]})"
+What is the 'principle of indemnity'?,"An insurance principle stating that compensation should restore the insured to the financial position they were in just before the loss—no better, no worse. It prevents insurance from becoming a source of profit."
+What is the pH of pure water at 25°C?,Approximately 7 (neutral).
+"Compute the simple interest on $5,000 at 4% per year for 3 years.",Simple interest = P*r*t = 5000 * 0.04 * 3 = $600.
+What is a 'public adjuster'?,"An independent claims professional hired by the policyholder—not the insurer—to prepare, file, and negotiate a property claim. Compensation is usually a percentage of the settlement."
+What documents help prove a stolen-item claim?,"Original receipts, credit-card or bank statements, photos, serial numbers, appraisals, manufacturer documentation, and the police report. The more documentation, the smoother the claim handling."
+What is the CAPM?,Capital Asset Pricing Model: expected return = risk-free rate + beta * (market return − risk-free rate). It links systematic risk (beta) to expected return.
+What is a credit default swap (CDS)?,A derivative contract where one party pays periodic premiums and the other agrees to compensate if a specified borrower defaults. CDS act as insurance against credit events.
+What is 'cash value' in a permanent life insurance policy?,The savings component that grows tax-deferred over time and can be borrowed against or withdrawn. It increases as the policyholder pays premiums.
+"What is the median of 3, 7, 9, 12, 15?",9 (the middle value of the sorted list).
+What is 2^10?,1024
+What is 'salvage' in insurance?,The remaining value of damaged property the insurer takes possession of after paying a total loss. Sold to recover part of the claim cost.
+How do you read a JSON file in Python?,"import json\nwith open('file.json', 'r', encoding='utf-8') as f:\n    data = json.load(f)"
+What is 'mortality table'?,A statistical table showing the probability of death at each age for a defined population. Used to price life insurance and annuities.
+What is a premium in insurance?,"The amount the policyholder pays the insurer (monthly, quarterly, or annually) in exchange for coverage under the policy."
+What is the freezing point of water in Fahrenheit?,32°F
+What is the chemical formula for water?,H₂O
+What is a margin call?,A broker's demand for the investor to deposit more cash or securities when the equity in a margin account falls below the maintenance requirement.
+What does `git status` show?,"The current branch, files staged for commit, modified but unstaged files, and untracked files in the working directory."
+What is liability insurance?,Coverage that protects the insured against claims resulting from injuries and damage to other people or property. It pays for legal costs and payouts up to the policy limit.
+In which year did World War II end?,1945
+What if the at-fault driver is uninsured?,"Your uninsured/underinsured motorist (UM/UIM) coverage—if you have it—pays for your injuries and damages up to its limit. Otherwise you may need to sue the driver directly, with uncertain recovery."
+Write a SQL query that returns the 5 most recent orders from a table named `orders` ordered by `created_at`.,SELECT * FROM orders ORDER BY created_at DESC LIMIT 5;
+What does CPU stand for?,Central Processing Unit.
+What is reinsurance?,Insurance purchased by an insurer from another insurer (the reinsurer) to transfer part of its risk. It limits the original insurer's loss exposure on large or correlated claims.
+What is the time value of money?,"The principle that a unit of currency today is worth more than the same unit in the future, because money available now can be invested to earn returns or is exposed to inflation risk."
+What is a 'risk-free rate'?,"The theoretical return on an investment with zero default risk. In practice, short-term government securities (e.g., U.S. Treasury bills) are used as proxies."
+What is amortization?,"Spreading a cost or a loan principal over time. For loans, each periodic payment includes interest and a portion of principal. For intangibles, similar to depreciation for tangible assets."
+What is 'actual cash value' (ACV) coverage?,"Property coverage that pays replacement cost minus depreciation, reflecting the item's value at the time of loss. Payouts are typically lower than replacement cost coverage."
+Who was Albert Einstein?,"A German-born theoretical physicist (1879-1955), best known for the theory of relativity and the equation E = mc². He won the Nobel Prize in Physics in 1921."
+What does `pip freeze > requirements.txt` do?,"It writes all installed packages and their pinned versions in the active environment to a requirements.txt file, so the environment can be reproduced with `pip install -r requirements.txt`."
+What is dollar-cost averaging?,"Investing a fixed amount at regular intervals regardless of price, smoothing out the average purchase cost and reducing the risk of poor market timing."
+What is an out-of-pocket maximum?,"The most an insured will pay during a policy period (usually a year) for covered services. Once reached, the insurer pays 100% of additional covered costs for the rest of the period."
+Write a Python snippet to download a file from a URL.,"import urllib.request\nurllib.request.urlretrieve('https://example.com/file.zip', 'file.zip')"
+How long does it usually take for an insurance claim to be paid?,"It varies by claim complexity and jurisdiction—simple auto or property claims may settle in a few days to a few weeks, while large or contested claims can take several months. Many regulators set deadlines for acknowledgment and decision."
+"What is the difference between `let`, `const`, and `var` in JavaScript?",`var` is function-scoped and hoisted with `undefined`. `let` is block-scoped and reassignable. `const` is block-scoped and cannot be reassigned (but objects/arrays it points to can still be mutated).
+What is a claim adjuster?,"A professional who investigates an insurance claim, evaluates the damage, determines coverage, and recommends a settlement amount on behalf of the insurer."
+What is the longest river in the world?,"The Nile is traditionally cited as the longest river, though the Amazon is a close contender depending on measurement methodology."
+Write a Python function that returns the factorial of a non-negative integer n.,"def factorial(n):\n    if n < 0:\n        raise ValueError('n must be non-negative')\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result"
+What is the value of pi to 5 decimal places?,3.14159
+What is the difference between in-network and out-of-network providers?,"In-network providers have contracted rates and lower out-of-pocket costs for the insured. Out-of-network providers usually mean higher coinsurance, separate deductibles, and balance billing in many regions."
+What is the function of red blood cells?,"To carry oxygen from the lungs to the body's tissues and return carbon dioxide for exhalation, via the protein hemoglobin."
+What is coinsurance?,"A percentage of covered costs the insured pays after meeting the deductible. For example, with 20% coinsurance, the insurer pays 80% and the insured pays 20% of each covered expense, until the out-of-pocket maximum is reached."
+What is 'trip cancellation' coverage?,"Travel coverage that reimburses non-refundable trip costs if you cancel for a covered reason (illness, injury, death of a relative, certain emergencies) before the trip starts."
+What is the difference between named perils and all-risks coverage?,"Named-perils policies cover only the perils explicitly listed (e.g., fire, theft). All-risks (open-perils) policies cover any cause of loss except those specifically excluded—broader protection but typically pricier."
+What is a bull market?,"A market in which prices are rising or expected to rise, often associated with strong economic conditions and investor optimism."
+What is a yield (on a bond)?,"The return an investor earns on a bond. Common measures: coupon yield (coupon/face value), current yield (coupon/price), and yield to maturity (annualized return assuming the bond is held to maturity)."
+How do you measure execution time of a Python snippet from the command line?,Use the timeit module: `python -m timeit -s 'setup_code' 'code_to_time'`.
+Write a Python one-liner to check if a string is a palindrome (case-insensitive).,is_palindrome = lambda s: s.lower() == s.lower()[::-1]
+What is 'salvage value' in a totaled vehicle claim?,"The remaining market value of the damaged vehicle, usually sold by the insurer to a salvage yard. The insurer subtracts it from the payout if the insured keeps the vehicle, or takes it after paying ACV."
+Write a Python function that returns True if a year is a leap year.,def is_leap(year):\n    return year % 4 == 0 and (year % 100 != 0 or year % 400 == 0)
+What is the capital of Australia?,"Canberra (not Sydney, which is the largest city)."
+What planet is known as the Red Planet?,Mars.
+How do I appeal a denied health insurance claim?,"Request the explanation of benefits and denial reason, ask the provider to correct any coding issues, gather medical records and a letter of medical necessity, then submit a formal appeal within the deadline. Escalate to external review if needed."
+Solve 5! / 3!,5! / 3! = 120 / 6 = 20.
+Who painted the Mona Lisa?,Leonardo da Vinci.
+What is a bear market?,"A market in which prices have fallen 20% or more from a recent peak, typically accompanied by widespread pessimism and economic slowdown."
+How are bodily injury claims typically valued?,"Insurers consider medical expenses, lost wages, future treatment costs, pain and suffering, permanent impairment, and contributory fault. Settlement ranges depend on jurisdiction and case specifics."
+What is 'travel insurance'?,"Short-term coverage for trip-related risks, typically including trip cancellation/interruption, medical emergencies abroad, lost baggage, and travel delays."
+What is the chemical symbol for sodium?,Na
+What is the appraisal clause in property insurance?,"A dispute-resolution provision: if the insured and insurer disagree on the loss amount, each picks an appraiser; the two select an umpire, and any two of the three may set a binding loss value."
+Write a regex to match a date in YYYY-MM-DD format.,^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$
+What is the difference between a list and a tuple in Python?,"Lists are mutable and use square brackets; tuples are immutable and use parentheses. Tuples are slightly faster, hashable when their elements are hashable, and useful as fixed records or dict keys."
+Who proposed the heliocentric model of the solar system?,"Nicolaus Copernicus, in his 1543 work 'De revolutionibus orbium coelestium', later supported by observations from Galileo and laws by Kepler."
+How do you handle exceptions in Python?,"Use a try/except block. You can catch specific exception classes, add an `else` clause that runs when no exception was raised, and a `finally` clause that always runs (e.g., for cleanup)."
+How do I file a claim after a car accident?,"Ensure safety and call emergency services if needed; document the scene with photos; exchange contact and insurance info with the other driver; file a police report when applicable; then notify your insurer promptly with the report, photos, and any witness details. Follow your insurer's instructions for repair or appraisal."
+What should I do if my insurance claim is denied?,"Read the denial letter to understand the reason and the policy provisions cited; gather supporting documentation; file an internal appeal with the insurer; if unresolved, escalate to the regulator or an ombudsman, and consider legal advice for significant losses."
+What is an income statement?,"A financial statement summarizing revenues, expenses, and resulting profit or loss over a defined period. Also called the profit-and-loss (P&L) statement."
+What is the derivative of x² with respect to x?,2x
+What is 'adverse selection'?,"The tendency of higher-risk individuals to be more likely to seek insurance than lower-risk ones, distorting the risk pool. Insurers counter it via underwriting, waiting periods, and pricing."
+What is asset allocation?,"The process of spreading investments across asset classes (stocks, bonds, cash, alternatives) to balance risk and return based on goals, horizon, and risk tolerance."
+What is the difference between APR and APY?,"APR (Annual Percentage Rate) is the simple yearly interest rate. APY (Annual Percentage Yield) accounts for compounding within the year, so APY ≥ APR. APY better reflects the actual return on savings or cost of borrowing."
+What is 'cyber liability insurance'?,"Coverage for losses tied to cyber incidents: data breaches, ransomware, business interruption, regulatory fines (where insurable), and third-party liability for affected customers."
+What is 'claim leakage'?,"The difference between the amount actually paid on a claim and the optimal amount that should have been paid given correct handling. Common causes: errors, insufficient investigation, fraud, or poor reserving."
+What is a cash flow statement?,"A financial statement showing how cash moved during a period across operating, investing, and financing activities, reconciling beginning to ending cash balance."
+What is 'depreciation' in a claim context?,"The reduction in an item's value due to age, wear and tear, and obsolescence. Under ACV settlements, depreciation is subtracted from replacement cost to determine the payout."
+What is 'fraud' in an insurance claim?,"An intentional misrepresentation or omission by an insured to obtain a benefit they're not entitled to—e.g., inflating losses, faking a theft, or staging an accident. It can void coverage and lead to criminal charges."
+What is the official currency of Japan?,The Japanese yen (JPY).
+What is the difference between PUT and PATCH in HTTP?,"PUT replaces a resource with the request payload (full update). PATCH applies a partial update, modifying only the fields included in the payload."
+What does `O(n log n)` mean?,"Runtime grows in proportion to n times log n. Typical of efficient comparison-based sorts (mergesort, heapsort, average-case quicksort)."
+Write a Python function that flattens a nested list one level deep.,def flatten_one(lst):\n    return [x for sub in lst for x in sub]
+What is 'short rate' cancellation?,Cancellation initiated by the insured where the refunded premium is less than the unearned portion to compensate the insurer for setup costs. Common in voluntary cancellations.
+What is the typical deadline to file a claim?,"Policies often require notice 'as soon as practicable' and may set outside limits (e.g., 1 year). Statutes of limitations also apply. File quickly to avoid disputes over timeliness."
+What is gravity?,"A fundamental force of attraction between masses. On Earth, it gives weight to physical objects and pulls them toward the planet's center at about 9.81 m/s² near the surface."
+What documents are typically needed to file a home insurance claim?,"A completed claim form, the policy number, photos or video of the damage, an inventory of damaged or stolen items with values, receipts or proofs of purchase when available, repair estimates or invoices, and any police or fire report."
+Why might my health insurance deny a claim?,"Common reasons include: service not covered, out-of-network provider, prior authorization missing, coding errors, services deemed not medically necessary, or annual/lifetime limits exceeded."
+What is liquidity?,The ease and speed with which an asset can be converted into cash without significantly affecting its price. Cash is the most liquid asset; real estate is much less liquid.
+What is a yield curve?,A graph plotting interest rates of bonds with equal credit quality across different maturities. A normal curve slopes upward; an inverted curve (long < short) often signals recession risk.
+Who composed 'The Four Seasons'?,Antonio Vivaldi.
+Can I withdraw a claim I've already filed?,"Yes—you can usually withdraw before the insurer has paid out, especially if you decide to absorb the cost. The claim may still appear on your loss history, depending on the insurer and jurisdiction."
+How do you create a class in Python with an __init__ method?,"class Point:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n    def __repr__(self):\n        return f'Point({self.x}, {self.y})'"
+What is the law of conservation of energy?,"Energy cannot be created or destroyed, only transformed from one form to another. The total energy in an isolated system remains constant."
+What is 15 * 23?,345
+What is 'workers' compensation'?,"Insurance providing wage replacement and medical benefits to employees injured in the course of employment, in exchange for relinquishing the right to sue the employer for negligence."
+What is collision auto coverage?,"Auto coverage that pays for damage to your own vehicle resulting from a collision with another vehicle or object, regardless of fault. Subject to the policy deductible."
+What is the difference between `==` and `===` in JavaScript?,"`==` performs type coercion before comparing (e.g., 0 == '0' is true), while `===` checks both type and value without coercion (0 === '0' is false). Use `===` by default to avoid surprises."
+What is 2/5 + 1/3?,2/5 + 1/3 = 6/15 + 5/15 = 11/15.
+How do you sort a list of dicts by the key 'age' in Python?,"sorted(items, key=lambda d: d['age'])"
+What is a 401(k)?,"A U.S. employer-sponsored retirement plan letting employees defer part of their salary into investments, often with employer matching. Contributions and growth are tax-advantaged."
+What is the difference between fiscal and monetary policy?,"Fiscal policy is government taxation and spending decisions. Monetary policy is the central bank's management of interest rates and money supply. Both influence inflation, employment, and growth."
+What is a rider in an insurance policy?,"An optional add-on that modifies a base policy by adding, restricting, or expanding coverage—usually for an extra premium."
+What is a 'subrogation waiver'?,A contractual provision in which one party waives the insurer's right to subrogate against another party. Common in construction and lease agreements to prevent disputes between contractually linked parties.
+Write a Python snippet that creates a simple HTTP server in the current directory.,python3 -m http.server 8000
+What is the speed of light in vacuum?,"Approximately 299,792,458 meters per second."
+In which continent is Egypt located?,"Africa, with the Sinai Peninsula geographically in Asia."
+Does homeowners insurance cover earthquakes?,"No—earthquake damage is typically excluded and requires separate earthquake coverage or an endorsement, with its own deductible (often a percentage of dwelling limit)."
+How do you reverse a list in place in Python?,Call my_list.reverse(); to get a reversed copy use list(reversed(my_list)) or my_list[::-1].
+Convert 0.75 to a fraction.,03-Apr
+What is 'loss ratio' in insurance?,"The ratio of paid claims (and adjustment expenses) to earned premiums, expressed as a percentage. A key indicator of an insurer's underwriting profitability."
+What is the Pythagorean theorem?,"In a right triangle, a² + b² = c², where c is the hypotenuse and a, b are the legs."
+How do you merge two dictionaries in Python 3.9+?,Use the `|` operator: merged = d1 | d2 (right-hand keys win). For in-place merge use d1 |= d2.
+What is inflation?,"A general rise in the price level of goods and services over time, reducing purchasing power. Often measured by the Consumer Price Index (CPI)."
+How is a property claim payment usually calculated?,"Either at replacement cost (cost to replace with new like-for-like) or actual cash value (replacement cost minus depreciation), minus the deductible, and capped at the applicable policy limit."
+What does the SQL keyword DISTINCT do?,"It removes duplicate rows from the result set, returning only unique combinations of the selected columns."
+What is the integral of 1/x?,"ln|x| + C, where C is the constant of integration."
+What is 'diminished value' in an auto claim?,"The reduction in a vehicle's market value after a major repair, even when restored properly. Some jurisdictions allow recovery of diminished value from the at-fault party's insurer."
+Difference between `git merge` and `git rebase`?,"`merge` creates a new merge commit that combines two branch histories, preserving both. `rebase` replays your commits onto another branch's tip, producing a linear history but rewriting commit hashes. Avoid rebasing branches others have pulled."
+Can I keep the insurance payout instead of repairing?,"If the property is owned outright and no contract requires repair, often yes. If a mortgage exists, lenders typically require funds be used for repair. ACV settlements may also withhold depreciation until proof of repair."
+What gas do plants absorb from the atmosphere for photosynthesis?,Carbon dioxide (CO₂).
+What is internal rate of return (IRR)?,"The discount rate that makes the NPV of an investment's cash flows equal to zero. Often used to compare projects: higher IRR means more attractive, all else equal."
+Write a Python one-liner that returns the sum of digits of an integer n.,sum_digits = lambda n: sum(int(c) for c in str(abs(n)))
+What is an 'explanation of benefits' (EOB)?,"A statement from the insurer detailing how a medical claim was processed: charges, allowed amounts, plan payment, patient responsibility, and any denial reasons. It is not a bill."
+Write a JavaScript snippet that fetches JSON from a URL.,const res = await fetch('https://api.example.com/data');\nif (!res.ok) throw new Error('HTTP ' + res.status);\nconst data = await res.json();
+What is 'grace period' in insurance?,A short period (often 30 days) after a missed premium payment during which the policy remains in force and the policyholder can pay without losing coverage.
+What is 'replacement cost' coverage?,"Property coverage that pays the cost to replace damaged items with new ones of like kind and quality, without deduction for depreciation."
+What is the difference between a process and a thread?,A process has its own memory space and resources; threads run inside a process and share its memory. Threads are lighter to create and switch but require synchronization to avoid race conditions.
+What is a 'no-claims bonus'?,A discount on premium granted to policyholders who go a defined period (typically a year) without filing a claim. Common in motor insurance.
+What is volatility?,"A statistical measure of the dispersion of returns of an asset, often expressed as the annualized standard deviation. Higher volatility means larger price swings and typically more risk."
+Does homeowners insurance cover mold?,"Usually only when caused by a sudden, covered peril (e.g., burst pipe). Mold from long-term leaks, humidity, or maintenance neglect is typically excluded or sub-limited."
+What is 'pro rata' cancellation?,"Cancellation of a policy where the insurer refunds the unearned portion of the premium proportionally to the unused policy period, without penalty."
+How many bones are in the adult human body?,206
+What is 'material misrepresentation' on an insurance application?,A false statement or omission about a fact that would influence the insurer's decision to issue the policy or set the premium. It can lead to claim denial or policy rescission.
+Write a SQL query to find duplicate emails in a `users` table.,"SELECT email, COUNT(*) AS n\nFROM users\nGROUP BY email\nHAVING COUNT(*) > 1;"
+What is working capital?,Current assets minus current liabilities. It measures a company's short-term liquidity—its ability to cover obligations due within a year.
+What is the difference between BFS and DFS?,"Breadth-First Search explores nodes level by level using a queue and finds shortest paths in unweighted graphs. Depth-First Search dives down each branch using a stack or recursion and is useful for topological sort, cycle detection, and exhaustive exploration."
+What is goodwill in accounting?,An intangible asset created when one company acquires another for more than the fair value of its identifiable net assets. Tested for impairment annually.
+How do you create a virtual environment in Python 3?,"Run `python3 -m venv .venv`, then activate it with `source .venv/bin/activate` on Linux/macOS or `.venv\Scripts\activate` on Windows."
+What is a copay?,"A fixed amount the insured pays for a covered service (e.g., €20 per doctor's visit), with the insurer paying the rest up to policy limits."
+"Compute the future value of $1,000 invested at 6% annually for 10 years.","FV = 1000 * (1.06)^10 ≈ $1,790.85."
+Write a Python snippet that uses a set to find common elements between two lists.,common = set(list_a) & set(list_b)
+What is 'pre-authorization' in health insurance?,"A requirement to get insurer approval before receiving certain treatments, procedures, or prescriptions. Without it, the insurer may deny or reduce payment."
+Write a Python function that returns the n-th Fibonacci number using iteration.,"def fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a"
+What does HTTP status code 403 mean?,"Forbidden: the server understands the request and the client may be authenticated, but the client is not allowed to access the resource."
+What is the difference between a stock and a bond?,A stock represents partial ownership in a company and pays variable returns through dividends and price changes. A bond is a debt instrument with predefined interest payments and principal repayment at maturity.
+What is a 'policy limit'?,"The maximum amount an insurer will pay for a covered loss under the policy, either per occurrence, per claim, or aggregate over the policy period."
+What is a P/E ratio?,Price-to-Earnings ratio: a stock's price per share divided by its earnings per share. It measures how much investors pay for each unit of earnings. High P/E may indicate growth expectations or overvaluation.
+What is 'reserves' in claims management?,Funds set aside by the insurer for the estimated future payment of an open claim. Reserves are updated as more information becomes available.
+How do you make an HTTP GET request in Python with the requests library?,"import requests\nr = requests.get('https://api.example.com/items', timeout=10)\nr.raise_for_status()\ndata = r.json()"
+What is a derivative?,"A financial contract whose value is derived from an underlying asset, index, or rate. Examples include futures, options, forwards, and swaps."
+What is the difference between mutable and immutable types in Python?,"Mutable objects (list, dict, set) can be modified in place. Immutable ones (int, float, str, tuple, frozenset) cannot; any 'modification' returns a new object. Immutability allows hashing and safer sharing."
+What is the area of a circle with radius 5?,Area = πr² ≈ 78.54 square units.
+Write a Python function that checks whether a number is prime.,def is_prime(n):\n    if n < 2:\n        return False\n    if n % 2 == 0:\n        return n == 2\n    i = 3\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 2\n    return True
+What is a 'reservation of rights' letter?,A letter from an insurer indicating it is investigating or defending a claim while reserving the right to deny coverage later if facts show the loss is not covered.
+What is compound interest?,Interest calculated on the initial principal and on the accumulated interest from previous periods. Over time it makes balances grow exponentially. The formula is A = P(1 + r/n)^(n*t).
+What is an ETF?,"An Exchange-Traded Fund: a basket of securities (stocks, bonds, commodities) traded on an exchange like a stock. ETFs offer diversification, intraday liquidity, and typically lower fees than mutual funds."
+Write a Python function that returns the most common element of a list.,from collections import Counter\ndef most_common(lst):\n    return Counter(lst).most_common(1)[0][0]
+What is short selling?,"Selling borrowed securities expecting their price to decline, then buying them back at a lower price to return them and pocketing the difference, minus borrowing fees."
+What is an atom?,"The smallest unit of a chemical element that retains its chemical properties, composed of a nucleus (protons and neutrons) surrounded by electrons."
+What is photosynthesis' main byproduct released into the atmosphere?,Oxygen (O₂).
+"If my luggage is lost, what does travel insurance pay?","Up to the policy's baggage limit, after the deductible, for the depreciated value of the contents and reasonable replacement of essentials during delay. Sub-limits often apply to high-value items."
+What is 'errors and omissions (E&O)' insurance?,"Professional liability coverage protecting service providers (consultants, architects, agents) against claims of inadequate work or negligent acts that cause client losses."
+What is comprehensive auto coverage?,"Auto coverage that pays for damage to your vehicle from non-collision events: theft, vandalism, fire, hail, falling objects, and animal collisions. Subject to the policy deductible."
+What is DNA?,Deoxyribonucleic acid: a double-helix molecule that stores the genetic instructions used in the development and functioning of all known living organisms.
+What is 'cancel for any reason' (CFAR)?,"A travel insurance upgrade allowing cancellation for any reason, with a partial refund (often 50-75%) of non-refundable costs. Strict timing and eligibility rules apply."
+What is osmosis?,The movement of water molecules across a semi-permeable membrane from a region of lower solute concentration to a region of higher solute concentration.
+Define 'actuary'.,"A professional who uses mathematics, statistics, and financial theory to assess the financial impact of risk and uncertainty, especially for insurance pricing and reserving."
+What does the `enumerate` function return in Python?,"It returns an iterator of (index, value) tuples for an iterable, with the index starting at 0 by default (or at the value passed via the `start` argument)."
+What is a contestable period in life insurance?,A period (commonly the first two years of the policy) during which the insurer can investigate and deny claims based on misrepresentations made on the application.
+"Compute simple interest on €2,500 at 3.5% for 4 years.",Simple interest = 2500 * 0.035 * 4 = €350.
+What is a 'claims-made' policy?,"A liability policy that covers claims made and reported during the policy period, regardless of when the underlying incident occurred (provided it occurred after the retroactive date)."
+What is the Sharpe ratio?,A measure of risk-adjusted return: (portfolio return − risk-free rate) divided by portfolio volatility. Higher Sharpe means better return per unit of risk.
+Who developed the theory of general relativity?,"Albert Einstein, published in 1915."
+Define 'group insurance'.,"Insurance offered to a defined group (employees, association members) under a single master contract. Underwriting and pricing apply to the group as a whole, often resulting in lower individual premiums."
+Write a regex that matches a basic email address.,"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+Who was the first person to walk on the Moon?,"Neil Armstrong, on July 20, 1969, during the Apollo 11 mission."
+What is 'combined ratio'?,The sum of an insurer's loss ratio and expense ratio. Below 100% indicates underwriting profit; above 100% means the insurer paid out more in claims and expenses than it collected in premiums.
+What is 'directors and officers (D&O)' insurance?,Coverage protecting company directors and officers (and sometimes the entity itself) against personal losses from claims tied to alleged wrongful acts in their managerial capacity.
+How do you add type hints to a Python function?,"def greet(name: str, times: int = 1) -> str:\n    return ('Hello ' + name + ' ') * times"
+Write a Bash command to find all `.log` files modified in the last 7 days under /var/log.,find /var/log -type f -name '*.log' -mtime -7
+What does HTTP status code 401 mean?,Unauthorized: the request lacks valid authentication credentials. The client must authenticate (or re-authenticate) before retrying.
+What is the rule of 72?,"A shortcut to estimate how long an investment takes to double: divide 72 by the annual return rate (in %). At 8%, money doubles in roughly 72/8 = 9 years."
+Write a Bash one-liner to count lines in a file.,wc -l < file.txt
+What is the boiling point of water at sea level in Celsius?,100°C
+What is the difference between `is` and `==` in Python?,"`==` compares values for equality; `is` checks whether two references point to the same object in memory. Use `is` only for sentinels like None, True, False."
+What is a deductible in an insurance policy?,"The amount the policyholder must pay out of pocket before the insurer starts to pay on a covered claim. Higher deductibles typically mean lower premiums, and vice versa."
+What is 'tail coverage'?,An extension of a claims-made policy that covers claims reported after the policy ends but for events that occurred while it was active. Useful when switching insurers or retiring.
+What is the role of an insurance agent?,A representative who sells policies on behalf of one or more insurers. Captive agents represent a single insurer; independent agents place business with several.
+How quickly should I notify my insurer after a loss?,"As soon as reasonably possible—policies typically require 'prompt' notice. Delays can complicate the investigation, jeopardize coverage, or be cited as a breach of policy conditions."
+What is a Python decorator?,"A decorator is a callable that takes a function and returns a new function, typically to add behavior (logging, caching, auth checks) without modifying the original. Applied with the @decorator syntax above the function definition."
+What does the SQL HAVING clause do?,"It filters groups produced by GROUP BY, similar to how WHERE filters rows. HAVING runs after aggregation and can reference aggregate functions like COUNT or SUM."
