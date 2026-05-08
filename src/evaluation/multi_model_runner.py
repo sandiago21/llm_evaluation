@@ -2,75 +2,101 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 from typing import List
 
-from src.models.dataset import EvaluationDataset, InferenceResult
-from src.evaluation.atomic_function import evaluate_query_answer_pair
+from src.models.dataset import EvaluationDataset
+from src.evaluation.atomic_function import evaluate_query_pair
+
+from src.evaluation.cache import (
+    resolve_cached_models,
+    save_model_cache,
+)
+
+from src.core.config import JUDGE_MODEL
 
 
-# -------------------------
-# Global lock for safe writes
-# -------------------------
 write_lock = threading.Lock()
 
-
-# -------------------------
-# Worker per model
-# -------------------------
 
 def _run_model_on_dataset(
     model_name: str,
     dataset: EvaluationDataset,
-) -> List[InferenceResult]:
-    """
-    Runs inference for a single model across all samples.
-    """
+):
 
-    results: List[InferenceResult] = []
+    results = []
 
     for sample in dataset.samples:
-        result = evaluate_query_answer_pair(
-            query_answer=sample,
+
+        result = evaluate_query_pair(
+            query=sample.query,
+            expected_answer=sample.expected_answer,
             model_name=model_name,
         )
+
         results.append(result)
 
     return results
 
 
-# -------------------------
-# Main orchestrator
-# -------------------------
-
 def run_multi_model_evaluation(
     dataset: EvaluationDataset,
     model_names: List[str],
-) -> EvaluationDataset:
+):
     """
-    Runs multiple models in parallel (one thread per model)
-    and aggregates results into dataset.inferences.
+    Parallel evaluation with partial cache loading.
     """
 
+    # -------------------------
+    # Resolve cache first
+    # -------------------------
+    version, missing_models = resolve_cached_models(
+        dataset=dataset,
+        model_names=model_names,
+        judge_model=JUDGE_MODEL,
+    )
+
+    # -------------------------
+    # Early return if fully cached
+    # -------------------------
+    if len(missing_models) == 0:
+
+        print("[✓] Fully loaded from cache")
+
+        return dataset
+
+    # -------------------------
+    # Worker function
+    # -------------------------
     def worker(model_name: str):
-        results = _run_model_on_dataset(model_name, dataset)
 
-        # Thread-safe write into shared dataset
+        results = _run_model_on_dataset(
+            model_name=model_name,
+            dataset=dataset,
+        )
+
         with write_lock:
+
             dataset.inferences[model_name] = results
 
-        return model_name, results
+            save_model_cache(
+                version=version,
+                model_name=model_name,
+                results=results,
+            )
 
+        print(f"[✓] Cached {model_name}")
 
     # -------------------------
-    # Thread pool execution
+    # Parallel execution
     # -------------------------
-    with ThreadPoolExecutor(max_workers=len(model_names)) as executor:
+    with ThreadPoolExecutor(
+        max_workers=len(missing_models)
+    ) as executor:
 
         futures = [
-            executor.submit(worker, model)
-            for model in model_names
+            executor.submit(worker, model_name)
+            for model_name in missing_models
         ]
 
         for future in as_completed(futures):
-            model_name, _ = future.result()
-            print(f"[✓] Completed model: {model_name}")
+            future.result()
 
     return dataset

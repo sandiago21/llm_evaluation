@@ -8,9 +8,11 @@ from src.models.dataset import (
 )
 
 from src.core.versioning import compute_dataset_version
+from src.core.config import CACHE_DIRECTORY
 
+CACHE_ROOT = CACHE_DIRECTORY
 
-CACHE_ROOT = "./cache"
+# CACHE_ROOT = "./cache"
 
 
 # -------------------------

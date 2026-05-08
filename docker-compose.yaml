@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+
+  # -------------------------
+  # Ollama inference server
+  # -------------------------
+  ollama:
+    image: ollama/ollama:latest
+
+    container_name: ollama
+
+    ports:
+      - "11434:11434"
+
+    volumes:
+      - ollama_data:/root/.ollama
+
+    restart: unless-stopped
+
+
+  # -------------------------
+  # Scoring API service
+  # -------------------------
+  scoring-api:
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: scoring-api
+
+    depends_on:
+      - ollama
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      JUDGE_MODEL: mistral
+
+    volumes:
+      - .:/app
+
+    restart: unless-stopped
+
+
+# -------------------------
+# Persistent volumes
+# -------------------------
+volumes:
+  ollama_data:
