@@ -88,7 +88,7 @@ class EvaluationDataset:
         """
 
         parsed_samples = [
-            Sample(
+            QueryAnswerSample(
                 query=s["query"],
                 expected_answer=s["expected_answer"],
             )

@@ -1,8 +1,8 @@
 from typing import Union
-from app.evaluation.ollama_client import generate
-
-
-JUDGE_MODEL = "llama3"  # configurable later via config
+from src.evaluation.ollama_client import generate
+from src.core.config import (
+    JUDGE_MODEL,
+)
 
 
 JUDGE_PROMPT = """
@@ -50,5 +50,7 @@ def judge_correctness(
     except Exception:
         score = 0.0  # fallback for malformed judge output
 
-    # clamp to valid range
-    return max(0.0, min(1.0, score))
+    # clamp score into valid range
+    score = max(0.0, min(1.0, score))
+
+    return score
