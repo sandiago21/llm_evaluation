@@ -50,3 +50,22 @@ For uncertain routing cases, we query multiple models and aggregate outputs usin
 
 Online learning: How would the router adapt as query distributions shift over time?
 We continuously update the router using logged feedback and treat routing as a contextual bandit problem under distribution shift.
+
+
+
+
+
+
+Analysis Notebook:
+* Generates models' answers (generated answer) and gets also the respective metrics (latency_seconds, token_count, correctness) by calling **run_multi_model_evaluation**, and saves the information in separate dataframe for each model as well as one dataframe including all.
+
+
+Prompt Analysis Notebook - Prompt Optimization
+* Uses a subset of the train_df to iterate over 5 prompt templates recommended by llama3 model (the stronger one) for the weeker models (mistral in this case) and evaluates them. Then uses the best prompt based on the score evaluation and compares it versus the initial prompt and just query prompt on the test_df dataset.
+
+* train_df, val_df and test_df as split in the **vector8 - Model Training** notebook are used across all the solution in order to be aligned and avoid any possible leakage.
+
+
+vector8 - Model Training Notebook - Dynamic Model Routing
+* Trains a transformer model in a question-answer style, depicting the input as query + [SEP] + model_name and label = correctness / latency
+* Analysis summary and conclusion are included in the notebook itself.
