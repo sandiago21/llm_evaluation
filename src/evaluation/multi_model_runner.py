@@ -3,7 +3,7 @@ import threading
 from typing import List
 
 from src.models.dataset import EvaluationDataset
-from src.evaluation.atomic_function import evaluate_query_pair
+from src.evaluation.atomic_function import evaluate_query_answer_pair
 
 from src.evaluation.cache import (
     resolve_cached_models,
@@ -25,9 +25,8 @@ def _run_model_on_dataset(
 
     for sample in dataset.samples:
 
-        result = evaluate_query_pair(
-            query=sample.query,
-            expected_answer=sample.expected_answer,
+        result = evaluate_query_answer_pair(
+            query_answer=sample,
             model_name=model_name,
         )
 

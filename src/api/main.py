@@ -2,18 +2,18 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from typing import List
 
-from app.models.dataset import EvaluationDataset
-from app.tasks.task_manager import (
+from src.models.dataset import EvaluationDataset
+from src.tasks.task_manager import (
     launch_evaluation_task,
     get_task_status,
 )
 
-from app.core.request_context import (
+from src.core.request_context import (
     generate_request_id,
     set_request_id,
 )
 
-from app.core.logging import logger
+from src.core.logging import logger
 
 
 app = FastAPI()

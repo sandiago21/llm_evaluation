@@ -7,7 +7,6 @@ services:
   # -------------------------
   ollama:
     image: ollama/ollama:latest
-
     container_name: ollama
 
     ports:
@@ -20,10 +19,42 @@ services:
 
 
   # -------------------------
+  # Model initialization service
+  # -------------------------
+  ollama-init:
+    image: curlimages/curl:latest
+    container_name: ollama-init
+
+    depends_on:
+      - ollama
+
+    entrypoint:
+      - /bin/sh
+      - -c
+
+    command: |
+      echo "Waiting for Ollama..." &&
+      until curl -s http://ollama:11434/api/tags; do sleep 2; done &&
+
+      echo "Pulling mistral..." &&
+      curl -X POST http://ollama:11434/api/pull \
+        -H "Content-Type: application/json" \
+        -d '{"name":"mistral"}' &&
+
+      echo "Pulling llama3..." &&
+      curl -X POST http://ollama:11434/api/pull \
+        -H "Content-Type: application/json" \
+        -d '{"name":"llama3"}' &&
+
+      echo "Done"
+
+    restart: "no"
+
+
+  # -------------------------
   # Scoring API service
   # -------------------------
   scoring-api:
-
     build:
       context: .
       dockerfile: Dockerfile
@@ -32,6 +63,7 @@ services:
 
     depends_on:
       - ollama
+      - ollama-init
 
     ports:
       - "8000:8000"
@@ -46,8 +78,5 @@ services:
     restart: unless-stopped
 
 
-# -------------------------
-# Persistent volumes
-# -------------------------
 volumes:
   ollama_data:
