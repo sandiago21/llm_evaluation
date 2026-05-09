@@ -2,7 +2,7 @@
 # Ollama Configuration
 # -------------------------
 ollama:
-  host: "http://ollama:11434"
+  host: "http://localhost:11434"
   timeout_seconds: 120
 
 

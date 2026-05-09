@@ -16,7 +16,7 @@ from dataclasses import dataclass
 def evaluate_query_answer_pair(
     query_answer: QueryAnswerSample,
     model_name: str,
-) -> Dict[str, Any]:
+) -> InferenceResult:
     """
     Atomic evaluation function for a single (QueryAnswerSample, model) pair.
 
@@ -52,10 +52,11 @@ def evaluate_query_answer_pair(
     # 3. Return structured output
     # -------------------------
 
-    atomic_result = InferenceResult
-    atomic_result.generated_answer = generated_answer
-    atomic_result.latency_seconds = latency_seconds
-    atomic_result.token_count = token_count
-    atomic_result.correctness = correctness
+    atomic_result = InferenceResult(
+        generated_answer=generated_answer,
+        latency_seconds=latency_seconds,
+        token_count=token_count,
+        correctness=correctness,
+    )
 
     return atomic_result
