@@ -29,3 +29,10 @@ cache:
 api:
   host: "0.0.0.0"
   port: 8000
+
+
+transformer_model:
+  # base_transformer_model: "data/models/roberta-base"
+  base_transformer_model: "roberta-base"
+  DEVICE: "cpu"
+  max_len: 64

@@ -13,11 +13,27 @@ from src.core.request_context import (
     set_request_id,
 )
 
+from src.router.inference import (
+    predict_best_model
+)
+
+from src.router.model import (
+    load_router_model,
+)
+
 from src.core.logging import logger
 
 
 app = FastAPI()
 
+@app.on_event("startup")
+def startup():
+
+    load_router_model()
+
+    logger.info(
+        "Router model loaded successfully"
+    )
 
 # -------------------------
 # Middleware
@@ -61,6 +77,10 @@ class EvaluationRequest(BaseModel):
     models: List[str]
 
 
+class RouteRequest(BaseModel):
+    query: str
+
+
 # -------------------------
 # Routes
 # -------------------------
@@ -93,3 +113,13 @@ def evaluate(request: EvaluationRequest):
 def task_status(task_id: str):
 
     return get_task_status(task_id)
+
+
+@app.post("/route")
+def route_query(request: RouteRequest):
+
+    result = predict_best_model(
+        query=request.query
+    )
+
+    return result
