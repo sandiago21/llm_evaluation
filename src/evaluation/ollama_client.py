@@ -65,10 +65,6 @@ def generate(
     )
 
     try:
-
-        print("OLLAMA HOST:", OLLAMA_HOST)
-        print("FULL URL:", f"{OLLAMA_HOST}/api/generate")
-
         response = requests.post(
             f"{OLLAMA_HOST}/api/generate",
             json=payload,

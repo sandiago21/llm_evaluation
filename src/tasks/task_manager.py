@@ -67,8 +67,6 @@ def launch_evaluation_task(
                 model_names=model_names,
             )
 
-            print(f"Check here: {result_dataset}")
-
             with TASK_LOCK:
 
                 TASKS[task_id]["status"] = "completed"
