@@ -7,7 +7,7 @@ from src.models.dataset import (
     InferenceResult,
 )
 
-from src.core.versioning import compute_dataset_version
+from src.core.versioning import compute_model_version
 from src.core.config import CACHE_DIRECTORY
 
 CACHE_ROOT = CACHE_DIRECTORY
@@ -109,24 +109,25 @@ def resolve_cached_models(
     """
 
     # -------------------------
-    # Compute deterministic version
+    # Per-model cache key — depends only on (samples, judge, model_name)
+    # so partial hits genuinely work when a new model is added to a run.
     # -------------------------
-    version = compute_dataset_version(
-        dataset=dataset,
-        model_names=model_names,
-        judge_model=judge_model,
-        judge_prompt_version=judge_prompt_version,
-    )
+    model_versions = {
+        m: compute_model_version(
+            dataset=dataset,
+            model_name=m,
+            judge_model=judge_model,
+            judge_prompt_version=judge_prompt_version,
+        )
+        for m in model_names
+    }
 
     missing_models = []
 
-    # -------------------------
-    # Check cache model-by-model
-    # -------------------------
     for model_name in model_names:
 
         cached_results = load_model_cache(
-            version=version,
+            version=model_versions[model_name],
             model_name=model_name,
         )
 
@@ -142,4 +143,4 @@ def resolve_cached_models(
 
             print(f"[CACHE MISS] {model_name}")
 
-    return version, missing_models
+    return model_versions, missing_models

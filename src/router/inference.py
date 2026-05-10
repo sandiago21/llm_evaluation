@@ -24,10 +24,10 @@ def predict_best_model(query: str):
         word = torch.tensor([len(query.split())])
         character = torch.tensor([len(query)])
 
-        query = query + "[SEP]" + model_name
+        encoded_input = query + "[SEP]" + model_name
 
         encoded = tokenizer(
-                [query],
+                [encoded_input],
                 padding = 'max_length',            
                 max_length = config["transformer_model"]["max_len"],
                 truncation = True,

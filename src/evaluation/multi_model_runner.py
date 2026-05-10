@@ -46,7 +46,7 @@ def run_multi_model_evaluation(
     # -------------------------
     # Resolve cache first
     # -------------------------
-    version, missing_models = resolve_cached_models(
+    model_versions, missing_models = resolve_cached_models(
         dataset=dataset,
         model_names=model_names,
         judge_model=JUDGE_MODEL,
@@ -76,7 +76,7 @@ def run_multi_model_evaluation(
             dataset.inferences[model_name] = results
 
             save_model_cache(
-                version=version,
+                version=model_versions[model_name],
                 model_name=model_name,
                 results=results,
             )
