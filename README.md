@@ -1,11 +1,14 @@
-TODO:
-
-- DVC for data versioning
-- Train Transformer model in QA format
-    - Query + [SEP] + model_name and predict correctness, token_count and latency or just correctness / latency
-- Optimize:
-    - correctness / latency or
+TODOs / Improvements:
+- DVC for data versioning and reproducibility
+- Setup registry for saving models and datasets
+- Train Router model to optimize for:
+    - correctness - 0.1 * latency
     - correctness - λ * token_cost
+- CI/CD Github Actions
+- Add unit testing and smoke tests
+- Add makefile
+- Linting
+
 
 - current_prompt
       ↓
