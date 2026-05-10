@@ -1,19 +1,52 @@
+# Python bytecode
 __pycache__/
 *.py[cod]
-*.egg-info/
-.eggs/
-build/
-dist/
-.venv/
+
+# Virtual environments
 venv/
-.env
-.env.*
-!.env.example
+.env/
+.venv/
+
+# Pytest
 .pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.cache/
-cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
 .DS_Store
-*.parquet
+
+# Logs
 *.log
+
+# Environment variables
+.env
+
+# Cache / artifacts
+cache/
+artifacts/
+
+# Ollama local data (optional)
+ollama_data/
+
+# IDEs
+.vscode/
+.idea/
+
+# ML artifacts
+*.pth
+*.pt
+
+# Cache
+cache/
+artifacts/
+
+# Ollama
+ollama_data/
+
+# Directories
+data/Models

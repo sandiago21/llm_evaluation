@@ -1,0 +1,88 @@
+services:
+
+  # -------------------------
+  # Ollama inference server
+  # -------------------------
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+
+    ports:
+      - "11434:11434"
+
+    volumes:
+      - ollama_data:/root/.ollama
+
+    restart: unless-stopped
+
+
+  # -------------------------
+  # Model initialization service
+  # Uses the ollama CLI so pulls block until the download is verified and
+  # the container exits non-zero on real failures.
+  # -------------------------
+  ollama-init:
+    image: ollama/ollama:latest
+    container_name: ollama-init
+
+    depends_on:
+      - ollama
+
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+
+    # Pass the whole script as a single argv element so compose does not
+    # split it on whitespace/newlines (otherwise sh -c only sees "set").
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        set -e
+        echo "Waiting for Ollama..."
+        until ollama list >/dev/null 2>&1; do sleep 2; done
+        echo "Pulling mistral..."
+        ollama pull mistral
+        echo "Pulling llama3..."
+        ollama pull llama3
+        echo "Pulling gemma2..."
+        ollama pull gemma2
+        echo "Models ready"
+
+    restart: "no"
+
+
+  # -------------------------
+  # Scoring API service
+  # -------------------------
+  scoring-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: scoring-api
+
+    depends_on:
+      ollama:
+        condition: service_started
+      ollama-init:
+        condition: service_completed_successfully
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      JUDGE_MODEL: mistral
+      CACHE_DIRECTORY: /app/cache
+
+    # Persist only the parquet cache; the rest of /app comes from the image
+    # so container behavior does not depend on host-side files.
+    volumes:
+      - scoring_cache:/app/cache
+
+    restart: unless-stopped
+
+
+volumes:
+  ollama_data:
+  scoring_cache:
