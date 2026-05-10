@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   # -------------------------
@@ -20,33 +18,35 @@ services:
 
   # -------------------------
   # Model initialization service
+  # Uses the ollama CLI so pulls block until the download is verified and
+  # the container exits non-zero on real failures.
   # -------------------------
   ollama-init:
-    image: curlimages/curl:latest
+    image: ollama/ollama:latest
     container_name: ollama-init
 
     depends_on:
       - ollama
 
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+
+    # Pass the whole script as a single argv element so compose does not
+    # split it on whitespace/newlines (otherwise sh -c only sees "set").
     entrypoint:
       - /bin/sh
       - -c
-
-    command: |
-      echo "Waiting for Ollama..." &&
-      until curl -s http://ollama:11434/api/tags; do sleep 2; done &&
-
-      echo "Pulling mistral..." &&
-      curl -X POST http://ollama:11434/api/pull \
-        -H "Content-Type: application/json" \
-        -d '{"name":"mistral"}' &&
-
-      echo "Pulling llama3..." &&
-      curl -X POST http://ollama:11434/api/pull \
-        -H "Content-Type: application/json" \
-        -d '{"name":"llama3"}' &&
-
-      echo "Done"
+      - |
+        set -e
+        echo "Waiting for Ollama..."
+        until ollama list >/dev/null 2>&1; do sleep 2; done
+        echo "Pulling mistral..."
+        ollama pull mistral
+        echo "Pulling llama3..."
+        ollama pull llama3
+        echo "Pulling gemma2..."
+        ollama pull gemma2
+        echo "Models ready"
 
     restart: "no"
 
@@ -62,8 +62,10 @@ services:
     container_name: scoring-api
 
     depends_on:
-      - ollama
-      - ollama-init
+      ollama:
+        condition: service_started
+      ollama-init:
+        condition: service_completed_successfully
 
     ports:
       - "8000:8000"
