@@ -73,12 +73,16 @@ services:
     environment:
       OLLAMA_HOST: http://ollama:11434
       JUDGE_MODEL: mistral
+      CACHE_DIRECTORY: /app/cache
 
+    # Persist only the parquet cache; the rest of /app comes from the image
+    # so container behavior does not depend on host-side files.
     volumes:
-      - .:/app
+      - scoring_cache:/app/cache
 
     restart: unless-stopped
 
 
 volumes:
   ollama_data:
+  scoring_cache:

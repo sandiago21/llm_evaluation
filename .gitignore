@@ -1,2 +1,52 @@
-data/models
-*.pyc
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Cache / artifacts
+cache/
+artifacts/
+
+# Ollama local data (optional)
+ollama_data/
+
+# IDEs
+.vscode/
+.idea/
+
+# ML artifacts
+*.pth
+*.pt
+
+# Cache
+cache/
+artifacts/
+
+# Ollama
+ollama_data/
+
+# Directories
+data/Models
