@@ -275,12 +275,11 @@ final test on held-out test_df
 ## Optional / bonus answers
 
 - **Query-difficulty estimation.** The router predicts
-  `correctness / latency` per (query, model). When the predicted score is below a threshold for the simple/faster models, we route to a stronger one; otherwise we keep the cheap model. The threshold is the lever for the difficulty/cost trade-off.
+  `correctness / latency` per (query, model). When the predicted score is below a threshold for the simple/faster models, we route to a stronger one; otherwise we keep the cheap model. The threshold is the lever for the difficulty/cost trade-off. Additionally, we could also predict the topic/category of the query, do an analysis over the training dataset of topics/categories where the simple/fast model(s) perform below expectations/needs/threshold and then on real time predict the topic/category of the query and if it lies on the topics/categories where the simple/fast model(s) underperform then only then route it to the better models.
 - **Cost-aware routing.** Swap the training target for either
   `correctness / latency` or `correctness − λ · token_cost` and retrain — no changes to the inference path needed.
-- **Transfer learning for prompts.** Partially. Reasoning-structure improvements, instruction clarity, and formatting constraints tend to transfer across models; tokenization sensitivity, instruction-tuning differences, and model-specific biases do not. Treat transferred
-  prompts as a strong starting point, not a finished product.
-- **Ensemble strategies.** When the router's confidence is low we can query multiple candidates and aggregate via majority vote or have an LLM rank the outputs.
+- **Transfer learning for prompts.** Partially but not fully. Reasoning-structure improvements, instruction clarity, and formatting constraints tend to transfer across models. However, tokenization sensitivity, instruction-tuning differences, and model-specific biases tend not to. Treat transferred prompts as a strong starting point, not a finished product.
+- **Ensemble strategies.** When the router's confidence is low we can query multiple candidates and aggregate via majority vote or have an LLM (LLM-as-a-Judge) rank the outputs.
 - **Online learning.** Stream production (query, model, correctness, latency) tuples back into a continually-updated router. The natural framing is a contextual bandit so the policy keeps exploring under distribution shift instead of locking in early winners.
 
 ---
