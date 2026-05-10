@@ -299,8 +299,6 @@ JUDGE_MODEL=mistral \
 uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-A minimal end-to-end smoke run is in [main.py](main.py).
-
 ---
 
 ## TODOs / improvements
