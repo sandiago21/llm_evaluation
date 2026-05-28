@@ -1,8 +1,6 @@
 # Vector8 — LLM Evaluation, Routing & Prompt Optimization
 
-A production-ready evaluation pipeline that benchmarks multiple LLMs served by
-a local Ollama instance, plus two ML-engineering extensions on top of that
-pipeline:
+A production-ready evaluation pipeline that benchmarks multiple LLMs served by a local Ollama instance, plus two ML-engineering extensions on top of that pipeline:
 
 1. **Dynamic model router** — a transformer model that, given a query, predicts the model maximising `correctness / latency` so we can avoid running every model for every question.
 2. **Prompt optimizer** — an iterative LLM-driven search that finds a prompt template lifting a weaker model's correctness on a held-out validation set.
@@ -301,6 +299,53 @@ uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 
 ---
 
+## Testing
+
+Unit tests live under [tests/](tests/) and are written with `pytest`. They
+mock every external dependency (Ollama, the judge LLM, the RoBERTa router,
+HuggingFace tokenizers) so the suite runs fully offline in under a second.
+
+Install the dev requirements and run the suite from the repo root:
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
+Coverage by area:
+
+| Module                              | Test file                                           |
+| ----------------------------------- | --------------------------------------------------- |
+| `src/core/versioning.py`            | [tests/test_versioning.py](tests/test_versioning.py) |
+| `src/core/request_context.py`       | [tests/test_request_context.py](tests/test_request_context.py) |
+| `src/core/logging.py`               | [tests/test_logging.py](tests/test_logging.py)      |
+| `src/models/dataset.py`             | [tests/test_dataset.py](tests/test_dataset.py)      |
+| `src/evaluation/cache.py`           | [tests/test_cache.py](tests/test_cache.py)          |
+| `src/evaluation/ollama_client.py`   | [tests/test_ollama_client.py](tests/test_ollama_client.py) |
+| `src/evaluation/judge.py`           | [tests/test_judge.py](tests/test_judge.py)          |
+| `src/evaluation/atomic_function.py` | [tests/test_atomic_function.py](tests/test_atomic_function.py) |
+| `src/evaluation/multi_model_runner.py` | [tests/test_multi_model_runner.py](tests/test_multi_model_runner.py) |
+| `src/tasks/task_manager.py`         | [tests/test_task_manager.py](tests/test_task_manager.py) |
+| `src/api/main.py`                   | [tests/test_api.py](tests/test_api.py)              |
+| `src/prompts/utils.py`              | [tests/test_prompt_utils.py](tests/test_prompt_utils.py) |
+| `src/prompts/prompt_optimizer.py`   | [tests/test_prompt_optimizer.py](tests/test_prompt_optimizer.py) |
+
+A few notes on the test setup:
+
+- [tests/conftest.py](tests/conftest.py) chdir's to the repo root so
+  [src/core/config.py](src/core/config.py) can resolve `configs/config.yaml`
+  at import time, and exposes shared fixtures (`sample_dicts`,
+  `eval_dataset`, `inference_result`, `tmp_cache_dir`).
+- The Ollama client retry tests swap `wait_exponential` for `wait_none`,
+  so retry exhaustion tests don't actually sleep.
+- The API tests stub `src.router.model` and `src.router.inference` in
+  `sys.modules` before importing the FastAPI app to avoid downloading a
+  HuggingFace tokenizer.
+- A live-Ollama smoke script lives at [tests/ollama_smoke.py](tests/ollama_smoke.py)
+  — it is *not* picked up by `pytest` discovery and must be run directly.
+
+---
+
 ## TODOs / improvements
 
 - DVC for data versioning and reproducibility
@@ -308,6 +353,5 @@ uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
 - Train router variants for `correctness − 0.1 · latency` and
   `correctness − λ · token_cost`
 - CI/CD via GitHub Actions
-- Unit tests + smoke tests
 - Makefile for common dev tasks
 - Linting (ruff / black)
