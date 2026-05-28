@@ -163,6 +163,7 @@ variables take precedence (loaded in [src/core/config.py](src/core/config.py)).
 | `transformer_model.base_transformer_model`| —                        | HF model name for the router (`roberta-base`) |
 | `transformer_model.DEVICE`                | —                        | `cpu` / `cuda`                            |
 | `transformer_model.max_len`               | —                        | Tokenizer max length                      |
+| —                                         | `SKIP_ROUTER_MODEL`      | When `true`/`1`/`yes`, skip loading the router checkpoint at startup; `/route` returns 503. Used by the Docker smoke test in CI where the `.pth` artifact isn't checked into git. |
 
 `docker-compose.yaml` already wires `OLLAMA_HOST=http://ollama:11434` and
 `JUDGE_MODEL=mistral` into the `scoring-api` container.

@@ -58,16 +58,29 @@ jobs:
 
       - name: Run container
         run: |
-          docker run -d -p 8000:8000 --name app fastapi-app
+          docker run -d -p 8000:8000 \
+            -e SKIP_ROUTER_MODEL=true \
+            --name app fastapi-app
 
       - name: Check containers
         run: docker ps -a
 
-      - name: Show logs
-        run: docker logs app
-
       - name: Wait for app
-        run: sleep 10
+        run: |
+          for i in {1..20}; do
+            if curl -fsS http://localhost:8000/docs > /dev/null; then
+              echo "API up after ${i} attempts"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "API never became reachable"
+          docker logs app
+          exit 1
+
+      - name: Show logs
+        if: always()
+        run: docker logs app
 
       - name: Test API docs endpoint
         run: curl --fail http://localhost:8000/docs
