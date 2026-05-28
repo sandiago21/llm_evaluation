@@ -132,3 +132,50 @@ def test_response_has_request_id_header(app_modules, monkeypatch):
     response = client.get("/tasks/whatever")
     assert "X-Request-ID" in response.headers
     assert len(response.headers["X-Request-ID"]) > 0
+
+
+def _reload_api_main():
+    """Force a clean re-import of src.api.main so module-level constants
+    (e.g. SKIP_ROUTER_MODEL) get re-evaluated against the current env."""
+    import importlib
+
+    for name in ("src.api.main", "src.router.model", "src.router.inference"):
+        sys.modules.pop(name, None)
+
+    import src.api  # noqa: F401
+    # `from src.api import main` reads src.api.__dict__["main"], which still
+    # holds a stale reference after popping sys.modules. Clear it so the
+    # next import really reruns the module body.
+    if hasattr(src.api, "main"):
+        delattr(src.api, "main")
+
+    return importlib.import_module("src.api.main")
+
+
+def test_route_returns_503_when_router_skipped(monkeypatch):
+    """When SKIP_ROUTER_MODEL is set, /route must not import the router
+    and must respond 503 instead of attempting inference."""
+    monkeypatch.setenv("SKIP_ROUTER_MODEL", "true")
+
+    api_main = _reload_api_main()
+
+    from fastapi.testclient import TestClient
+
+    client = TestClient(api_main.app)
+    response = client.post("/route", json={"query": "anything"})
+
+    assert response.status_code == 503
+    assert "SKIP_ROUTER_MODEL" in response.json()["detail"]
+
+
+def test_docs_endpoint_reachable_when_router_skipped(monkeypatch):
+    """Smoke-test parity: /docs must serve even without the router model."""
+    monkeypatch.setenv("SKIP_ROUTER_MODEL", "true")
+
+    api_main = _reload_api_main()
+
+    from fastapi.testclient import TestClient
+
+    client = TestClient(api_main.app)
+    response = client.get("/docs")
+    assert response.status_code == 200
