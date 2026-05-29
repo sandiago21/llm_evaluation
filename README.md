@@ -271,7 +271,7 @@ final test on held-out test_df
 
 ---
 
-## Optional / bonus answers
+## Additional Section
 
 - **Query-difficulty estimation.** The router predicts
   `correctness / latency` per (query, model). When the predicted score is below a threshold for the simple/faster models, we route to a stronger one; otherwise we keep the cheap model. The threshold is the lever for the difficulty/cost trade-off. Additionally, we could also predict the topic/category of the query, do an analysis over the training dataset of topics/categories where the simple/fast model(s) perform below expectations/needs/threshold and then on real time predict the topic/category of the query and if it lies on the topics/categories where the simple/fast model(s) underperform then only then route it to the better models.
