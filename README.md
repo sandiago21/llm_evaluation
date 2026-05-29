@@ -1,4 +1,4 @@
-# Vector8 — LLM Evaluation, Routing & Prompt Optimization
+# LLM-Arena — LLM Evaluation, Routing & Prompt Optimization
 
 A production-ready evaluation pipeline that benchmarks multiple LLMs served by a local Ollama instance, plus two ML-engineering extensions on top of that pipeline:
 
@@ -10,7 +10,7 @@ A production-ready evaluation pipeline that benchmarks multiple LLMs served by a
 ## Repository layout
 
 ```
-vector8/
+llm-arena/
 ├── configs/
 │   └── config.yaml              # Ollama, judge, cache, API, transformer settings
 ├── data/
@@ -20,7 +20,7 @@ vector8/
 │   └── predictions/             # Per-model and combined inference outputs
 ├── notebooks/
 │   ├── Analysis.ipynb               # End-to-end evaluation runs + comparisons
-│   ├── vector8-model-training.ipynb # Router (transformer) training & analysis
+│   ├── llm-arena-model-training.ipynb # Router (transformer) training & analysis
 │   └── Prompt Analysis.ipynb        # Prompt optimization loop & evaluation
 ├── src/
 │   ├── api/main.py              # FastAPI app: /evaluate, /tasks/{id}, /route
@@ -215,7 +215,7 @@ the per-model worker threads are serialised with a `threading.Lock`
 ### Train / Val / Test splits
 
 The Train/Val/Test split is produced in
-[notebooks/vector8-model-training.ipynb](notebooks/vector8-model-training.ipynb)
+[notebooks/llm-arena-model-training.ipynb](notebooks/llm-arena-model-training.ipynb)
 and stored under [data/datasets/](data/datasets/) (`train_df.csv`,
 `val_df.csv`, `test_df.csv`). The same splits are reused throughout the
 project — including by the prompt optimizer — to avoid leakage and keep
@@ -230,7 +230,7 @@ for every (sample, model) pair, and writes one DataFrame per model plus a combin
 ### Dynamic model routing
 
 Trained in
-[notebooks/vector8-model-training.ipynb](notebooks/vector8-model-training.ipynb).
+[notebooks/llm-arena-model-training.ipynb](notebooks/llm-arena-model-training.ipynb).
 
 - **Architecture:** a transformer (`roberta-base` by default) fed with
   `query + [SEP] + model_name`, with two auxiliary numeric features
@@ -271,7 +271,7 @@ final test on held-out test_df
 
 ---
 
-## Optional / bonus answers
+## Additional Section
 
 - **Query-difficulty estimation.** The router predicts
   `correctness / latency` per (query, model). When the predicted score is below a threshold for the simple/faster models, we route to a stronger one; otherwise we keep the cheap model. The threshold is the lever for the difficulty/cost trade-off. Additionally, we could also predict the topic/category of the query, do an analysis over the training dataset of topics/categories where the simple/fast model(s) perform below expectations/needs/threshold and then on real time predict the topic/category of the query and if it lies on the topics/categories where the simple/fast model(s) underperform then only then route it to the better models.
