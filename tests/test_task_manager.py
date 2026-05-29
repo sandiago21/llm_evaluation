@@ -16,6 +16,17 @@ from src.tasks.task_manager import (
 def clear_tasks():
     TASKS.clear()
     yield
+    # Drain any still-running workers so they can't run the real
+    # run_multi_model_evaluation against a non-existent Ollama after
+    # the test's patch context has been torn down.
+    deadline = time.time() + 2.0
+    while time.time() < deadline:
+        in_flight = [
+            t for t in TASKS.values() if t["status"] in {"pending", "running"}
+        ]
+        if not in_flight:
+            break
+        time.sleep(0.01)
     TASKS.clear()
 
 
@@ -31,6 +42,11 @@ def _wait_until(predicate, timeout=2.0):
 def test_launch_returns_uuid_task_id(eval_dataset):
     with patch.object(task_manager, "run_multi_model_evaluation", return_value=eval_dataset):
         task_id = launch_evaluation_task(eval_dataset, ["mistral"])
+        # Drain the worker before the patch is reverted, otherwise it
+        # would call the real run_multi_model_evaluation against Ollama.
+        assert _wait_until(
+            lambda: get_task_status(task_id)["status"] in {"completed", "failed"}
+        )
 
     uuid.UUID(task_id)
 
@@ -45,6 +61,11 @@ def test_launch_registers_task_with_initial_state(eval_dataset):
         assert state["status"] in {"pending", "running", "completed"}
         assert state["models"] == ["mistral"]
         assert state["error"] is None
+
+        # Drain before patch teardown so the worker doesn't escape.
+        assert _wait_until(
+            lambda: get_task_status(task_id)["status"] in {"completed", "failed"}
+        )
 
 
 def test_completed_task_carries_inferences(eval_dataset, inference_result):
