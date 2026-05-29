@@ -7,31 +7,31 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  # test-and-lint:
-  #   name: Lint & Test
-  #   runs-on: ubuntu-latest
+  test-and-lint:
+    name: Lint & Test
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v5
-  #       with:
-  #         python-version: "3.12"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-  #     - name: Install dependencies
-  #       run: |
-  #         pip install -r requirements.txt
-  #         pip install pytest ruff
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest ruff
 
-  #     - name: Lint code
-  #       run: ruff check .
+      # - name: Lint code
+      #   run: ruff check .
 
-      # - name: Run tests
-      #   env:
-      #     CI: true
-      #   run: pytest
+      - name: Run tests
+        env:
+          SKIP_ROUTER_MODEL: true
+        run: pytest
 
   docker-build:
     name: Build Docker Image
@@ -117,7 +117,7 @@ jobs:
   #     - name: Set up Python
   #       uses: actions/setup-python@v5
   #       with:
-  #         python-version: "3.11"
+  #         python-version: "3.12"
 
   #     - name: Install mypy
   #       run: pip install mypy
