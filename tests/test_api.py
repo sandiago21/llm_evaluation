@@ -27,7 +27,12 @@ def _install_router_stubs():
 
 
 @pytest.fixture
-def app_modules():
+def app_modules(monkeypatch):
+    # CI may set SKIP_ROUTER_MODEL=true globally to bypass the real router at
+    # startup. These tests rely on the stubbed router actually being invoked,
+    # so force the flag off before re-importing the API module.
+    monkeypatch.delenv("SKIP_ROUTER_MODEL", raising=False)
+
     model_stub, inference_stub = _install_router_stubs()
 
     # Drop any cached import of the api/task_manager so they pick up our stubs.
@@ -36,6 +41,10 @@ def app_modules():
         "src.tasks.task_manager",
     ):
         sys.modules.pop(name, None)
+
+    import src.api  # noqa: F401
+    if hasattr(src.api, "main"):
+        delattr(src.api, "main")
 
     from fastapi.testclient import TestClient
 
